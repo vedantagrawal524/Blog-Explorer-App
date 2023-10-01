@@ -1,6 +1,6 @@
 import 'package:blogexplorer/models/blog.dart';
 import 'package:blogexplorer/providers/blogs_provider.dart';
-import 'package:blogexplorer/screens/blogs_list_screen.dart';
+import 'package:blogexplorer/screens/blogs_view_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -44,7 +44,9 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       body: blogs.when(
         data: (blogs) {
           List<Blog> apiBlogs = blogs.map((e) => e).toList();
-          return BlogsListScreen(blogs: apiBlogs);
+          return BlogsViewListScreen(
+            blogs: apiBlogs,
+          );
         },
         error: (error, stackTrace) => Text(error.toString()),
         loading: () => const Center(

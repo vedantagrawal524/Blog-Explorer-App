@@ -1,44 +1,22 @@
+import 'package:blogexplorer/models/blog.dart';
+import 'package:blogexplorer/providers/blogs_provider.dart';
 import 'package:blogexplorer/screens/blogs_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-void fetchBlogs() async {
-  const String url = 'https://intent-kit-16.hasura.app/api/rest/blogs';
-  const String adminSecret =
-      '32qR4KmXOIpsGPQKMqEJHGJS27G5s7HdSKO3gdtQd2kv5e852SiYwWNfxkZOBuQ6';
-
-  try {
-    final response = await http.get(Uri.parse(url), headers: {
-      'x-hasura-admin-secret': adminSecret,
-    });
-
-    if (response.statusCode == 200) {
-      // Request successful, handle the response data here
-      print('Response data: ${response.body}');
-    } else {
-      // Request failed
-      print('Request failed with status code: ${response.statusCode}');
-      print('Response data: ${response.body}');
-    }
-  } catch (e) {
-    // Handle any errors that occurred during the request
-    print('Error: $e');
-  }
-}
-
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   @override
   void initState() {
-    fetchBlogs();
     super.initState();
   }
 
@@ -51,18 +29,28 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activeScreen = BlogsListScreen();
+    final blogs = ref.watch(blogsProvider);
+    // Widget activeScreen = BlogsListScreen();
     var activePageTitle = 'Blogs';
 
     if (_selectedScreenIndex == 1) {
-      activeScreen = BlogsListScreen();
+      // activeScreen = BlogsListScreen();
       activePageTitle = 'Your Favorites';
     }
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      body: activeScreen,
+      body: blogs.when(
+        data: (blogs) {
+          List<Blog> apiBlogs = blogs.map((e) => e).toList();
+          return BlogsListScreen(blogs: apiBlogs);
+        },
+        error: (error, stackTrace) => Text(error.toString()),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
         currentIndex: _selectedScreenIndex,

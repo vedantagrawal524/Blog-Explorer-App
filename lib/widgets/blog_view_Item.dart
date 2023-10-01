@@ -46,7 +46,7 @@ class BlogViewItem extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
                 child: Text(
                   blog.title,
-                  maxLines: 2,
+                  maxLines: 3,
                   textAlign: TextAlign.center,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,

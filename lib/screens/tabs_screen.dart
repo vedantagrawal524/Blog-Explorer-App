@@ -1,9 +1,9 @@
 import 'package:blogexplorer/models/blog.dart';
 import 'package:blogexplorer/providers/blogs_provider.dart';
+import 'package:blogexplorer/providers/favorites_blogs_provider.dart';
 import 'package:blogexplorer/screens/blogs_view_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 
 class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
@@ -34,6 +34,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     var activePageTitle = 'Blogs';
 
     if (_selectedScreenIndex == 1) {
+      final favoriteBlogs = ref.watch(favoriteBlogsNotifier);
       // activeScreen = BlogsListScreen();
       activePageTitle = 'Your Favorites';
     }

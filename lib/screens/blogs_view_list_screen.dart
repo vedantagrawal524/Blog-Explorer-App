@@ -22,8 +22,19 @@ class BlogsViewListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
+    Widget content = Center(
+      child: Text(
+        'No Blogs added yet!',
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+      ),
+    );
+
+    if (blogs.isNotEmpty) {
+      content = ListView.builder(
         itemCount: blogs.length,
         itemBuilder: (context, index) => BlogViewItem(
           blog: blogs[index],
@@ -31,7 +42,10 @@ class BlogsViewListScreen extends StatelessWidget {
             _selectBlog(context, blog);
           },
         ),
-      ),
+      );
+    }
+    return Scaffold(
+      body: content,
     );
   }
 }

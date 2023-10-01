@@ -30,30 +30,30 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     final blogs = ref.watch(blogsProvider);
-    // Widget activeScreen = BlogsListScreen();
+    Widget activeScreen = blogs.when(
+      data: (blogs) {
+        List<Blog> apiBlogs = blogs.map((e) => e).toList();
+        return BlogsViewListScreen(
+          blogs: apiBlogs,
+        );
+      },
+      error: (error, stackTrace) => Text(error.toString()),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
     var activePageTitle = 'Blogs';
 
     if (_selectedScreenIndex == 1) {
       final favoriteBlogs = ref.watch(favoriteBlogsNotifier);
-      // activeScreen = BlogsListScreen();
+      activeScreen = BlogsViewListScreen(blogs: favoriteBlogs);
       activePageTitle = 'Your Favorites';
     }
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      body: blogs.when(
-        data: (blogs) {
-          List<Blog> apiBlogs = blogs.map((e) => e).toList();
-          return BlogsViewListScreen(
-            blogs: apiBlogs,
-          );
-        },
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      body: activeScreen,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
         currentIndex: _selectedScreenIndex,

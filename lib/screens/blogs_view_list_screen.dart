@@ -26,7 +26,7 @@ class BlogsViewListScreen extends StatelessWidget {
       child: Text(
         'No Blogs added yet!',
         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onPrimary,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

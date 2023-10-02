@@ -28,13 +28,10 @@ final blogsProvider = FutureProvider<List<Blog>>((ref) async {
 
       return blogs;
     } else {
-      //dialog
-      print('Request failed with status code: ${response.statusCode}');
-      print('Response data: ${response.body}');
+      throw Exception('Something gone Wrong, Please try again later!');
     }
   } else {
     final offlineBlogs = await db.loadBlogs();
     return offlineBlogs;
   }
-  return [];
 });

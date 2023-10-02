@@ -106,7 +106,7 @@ class BlogDetailViewScreen extends ConsumerWidget {
         onPressed: () {
           toggleBlogFavStatus(context, blog, ref);
         },
-        backgroundColor: const Color.fromARGB(255, 53, 70, 167),
+        backgroundColor: Colors.indigo,
         child: Icon(
           isFavorite ? Icons.star : Icons.star_border,
           key: ValueKey(isFavorite),

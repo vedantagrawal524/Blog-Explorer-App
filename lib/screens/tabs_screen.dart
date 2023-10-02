@@ -15,11 +15,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 }
 
 class _TabsScreenState extends ConsumerState<TabsScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   int _selectedScreenIndex = 0;
   void _selectScreen(int index) {
     setState(() {
@@ -37,7 +32,16 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
           blogs: apiBlogs,
         );
       },
-      error: (error, stackTrace) => Text(error.toString()),
+      error: (error, stackTrace) {
+        return Text(
+          'Something gone Wrong, Please try again later!',
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+        );
+      },
       loading: () => const Center(
         child: CircularProgressIndicator(),
       ),

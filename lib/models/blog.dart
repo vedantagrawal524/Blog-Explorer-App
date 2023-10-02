@@ -1,5 +1,5 @@
 class Blog {
-  const Blog({
+  Blog({
     required this.id,
     required this.title,
     required this.imageUrl,
@@ -14,5 +14,12 @@ class Blog {
       title: json['title'],
       imageUrl: json['image_url'],
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'image_url': imageUrl,
+    };
   }
 }

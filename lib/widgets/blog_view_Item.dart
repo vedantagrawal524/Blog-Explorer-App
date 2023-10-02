@@ -10,7 +10,6 @@ class BlogViewItem extends StatelessWidget {
   });
   final Blog blog;
   final void Function(Blog meal) onSelectBlog;
-
   @override
   Widget build(BuildContext context) {
     return Card(

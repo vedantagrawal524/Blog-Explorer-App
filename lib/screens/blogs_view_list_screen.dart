@@ -1,6 +1,6 @@
 import 'package:blogexplorer/models/blog.dart';
 import 'package:blogexplorer/screens/blog_detail_view_screen.dart';
-import 'package:blogexplorer/widgets/blog_view_Item.dart';
+import 'package:blogexplorer/widgets/blog_view_item.dart';
 import 'package:flutter/material.dart';
 
 class BlogsViewListScreen extends StatelessWidget {

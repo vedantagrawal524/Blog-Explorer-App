@@ -1,16 +1,8 @@
-# blogexplorer
+# Blog Explorer Application
 
-A new Flutter project.
+## Preview
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Preview 2](https://github.com/user-attachments/assets/c6252159-4864-4755-912c-dc823a88ebfc)
+![Preview 3](https://github.com/user-attachments/assets/efe89c29-33a4-469d-b5ed-f3bb4068eb30)
+![Preview 1](https://github.com/user-attachments/assets/074d3d20-1b2c-46de-80c2-f3c48771fa3d)
+![Preview 4](https://github.com/user-attachments/assets/b6122e97-2217-43cc-9934-3d53ea20addb)
